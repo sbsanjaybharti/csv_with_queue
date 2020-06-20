@@ -3,7 +3,7 @@ from flask import Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
-from .index import api as index
+from .index import api as index, List
 
 # db = SQLAlchemy()
 # flask_bcrypt = Bcrypt()
@@ -16,4 +16,5 @@ api = Api(api_bluePrint,
           description='API service'
           )
 
-api.add_namespace(index, path='/server/start')
+api.add_namespace(index, path='/server')
+
