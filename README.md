@@ -1,4 +1,4 @@
-# csv_with_queue
+# csv with queue
 Process the csv file with multiple server 
 ### Requirement:
 * Python
@@ -37,6 +37,11 @@ Process the csv file with multiple server
     --rabbit(rabbitMQ)
     --traefik.toml(to monitor the trafic with list of url)
     
+### Architecture:
+#### Publisher
+![](architecture1.png)
+#### Consumer
+![](architecture2.png)
 #### Step-1
 1. Install Docker 
 2. git clone https://github.com/sbsanjaybharti/csv_with_queue
