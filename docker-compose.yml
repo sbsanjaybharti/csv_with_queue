@@ -62,7 +62,7 @@ services:
       FLASK_CONFIG: 'development'
       DB_HOST: mysql
       DB_PORT: 3306
-      DB_NAME: realxdata
+      DB_NAME: fincompare
       DB_USER: root
       DB_PASSWORD: root
       DOMAIN: 'dev.docker.localhost'
