@@ -1,17 +1,26 @@
+#!/usr/bin/env python3
+"""
+Import packages
+"""
 import os
-from flask import Flask, request, jsonify, current_app
+from flask import Flask
 
 from flask_sqlalchemy import SQLAlchemy
-import datetime
 from ..config import config_by_name
 from celery import Celery
-from ..service.dataProcessService import dataProcess
+from ..service.dataProcessService import DataProcess
+
 
 def make_celery(app):
+    """
+    Configure the celery with RabbitMQ
+    :param data:
+    :return:
+    """
     celery = Celery(
         app.import_name,
         backend='rpc://',
-        broker='amqp://rabbitmq:rabbitmq@rabbit1:5672/'
+        broker='amqp://**:rabbitmq@rabbit1:5672/'
     )
     celery.conf.update(app.config)
 
@@ -22,6 +31,7 @@ def make_celery(app):
 
     celery.Task = ContextTask
     return celery
+
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(config_by_name[os.getenv('FLASK_CONFIG') or 'development'])
@@ -34,12 +44,20 @@ celery = make_celery(app)
 
 @celery.task(name='celery.task.data')
 def dataCreate(data):
-    print('dd')
-    process = dataProcess()
-    process.processStart(data)
-    print("ggg")
+    """
+    Send data to queue from celery
+    :param data:
+    :return:
+    """
+    process = DataProcess()
+    process.process_start(data)
+
 
 def data_upload_queue(data):
-
-    process = dataProcess()
-    process.processStart(data)
+    """
+    Send data to queue
+    :param data:
+    :return:
+    """
+    process = DataProcess()
+    process.process_start(data)

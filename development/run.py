@@ -1,10 +1,15 @@
-from flask import Flask, render_template
+#!/usr/bin/env python3
+"""
+Import packages
+"""
+import unittest
+from flask import Flask
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from api.config import config_by_name
-from api import *
+# from api import *
+from api import api_bluePrint
 from api.main import db, flask_bcrypt
-import unittest
 
 #############################################################################
 # Setting Flask
@@ -28,6 +33,10 @@ manager.add_command('db', MigrateCommand)
 #############################################################################
 @manager.command
 def run():
+    """
+    Command: python run.py run
+    Description: To run the application
+    """
     app.run()
 
 #############################################################################

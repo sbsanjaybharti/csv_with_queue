@@ -1,9 +1,10 @@
+#!/usr/bin/env python3
+"""
+Import packages
+"""
 import os
-from ..main import db
 from flask import current_app
 from ..utility.rabbit_mq import RabbitMq
-import datetime
-import uuid
 import pandas as pd
 
 #############################################################################
@@ -11,16 +12,20 @@ import pandas as pd
 #############################################################################
 
 
-class dataProcess:
+class DataProcess:
 
-    def processStart(self, file):
+    def process_start(self, file):
 
         server = RabbitMq()
 
         # Panda for cleaning and managing
         col_Names = ["full_name", "email"]  # Add header to data
 
-        df = pd.read_csv(os.path.join(current_app.config['UPLOAD_FOLDER'], file), sep=',', names=col_Names)
+        df = pd.read_csv(
+            os.path.join(current_app.config['UPLOAD_FOLDER'], file),
+            sep=',',
+            names=col_Names
+        )
 
         # sorting by first name
         df.sort_values("email", inplace=True)

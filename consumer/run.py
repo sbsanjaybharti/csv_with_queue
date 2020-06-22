@@ -1,4 +1,8 @@
-from flask import Flask, render_template
+#!/usr/bin/env python3
+"""
+Import packages
+"""
+from flask import Flask
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from api.config import config_by_name

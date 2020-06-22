@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""
+Import packages
+"""
 from flask import request,  jsonify, current_app
 from api.model.recordModel import RecordModel
 import datetime

@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""
+Import packages
+"""
 import os
 from flask import jsonify, request
 from flask_restplus import Resource, Namespace

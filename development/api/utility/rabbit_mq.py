@@ -16,9 +16,6 @@ class RabbitMq():
 
     def callback(self, ch, method, properties, body):
 
-        # body = remove_trailing_commas(body.decode("utf-8"))
-        # data = json.loads(body)
-        # response = EventService.set(data['data'], data['source'])
         pass
 
     def publish(self, payload={}):
@@ -26,7 +23,6 @@ class RabbitMq():
         :param payload: JSON payload
         :return: None
         """
-        print('========={}={}={}'.format(config.RABBITMQ_EXCHANGE, config.RABBITMQ_ROUTINGKEY, str(payload)))
         self._channel.basic_publish(exchange=config.RABBITMQ_EXCHANGE,
                                     routing_key=config.RABBITMQ_ROUTINGKEY,
                                     body=str(payload))

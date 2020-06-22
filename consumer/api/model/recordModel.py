@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""
+Import packages
+"""
 from ..main import db
 import datetime
 import uuid
